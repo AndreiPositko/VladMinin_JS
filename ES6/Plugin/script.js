@@ -14,9 +14,23 @@ class Dropdown {
                 } else {
                     this.open();
                 }
+            } else if (event.target.tagName.toLowerCase() === 'li') {
+                this.select(event.target.dataset.id);
             }
-        })
+        });
+
+        const itemsHTML = this.items.map(i => {
+            return `<li data-id="${i.id}">${i.label}</li>`;
+        }).join(' ');
+        this.$el.querySelector('.dropdown__menu').insertAdjacentHTML('afterbegin', itemsHTML);
     }
+
+    select(id) {
+        const item = this.items.find(i => i.id === id);
+        this.$el.querySelector('.dropdown__label').textContent = item.label;
+        this.close();
+    }
+
     open() {
         this.$el.classList.add('open');
     }
