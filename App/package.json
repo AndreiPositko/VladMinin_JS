@@ -1,0 +1,21 @@
+{
+  "name": "js-app",
+  "version": "1.0.0",
+  "description": "js app",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js",
+    "app",
+    "javascript"
+  ],
+  "author": "Andrei Positko",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
