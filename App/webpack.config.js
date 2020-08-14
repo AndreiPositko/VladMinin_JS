@@ -19,10 +19,10 @@ module.exports = {
             filename: 'index.html',
             template: './src/index.html'
         }),
-        new MiniCssExtractPlugin({
-            filename: "style.css",
-            template: './src/style.css'
-        })
+        // new MiniCssExtractPlugin({
+        //     filename: "style.css",
+        //     template: './src/style.css'
+        // })
     ],
     resolve: {
         extensions: ['.js']
@@ -33,20 +33,20 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
-            {
-                test: /\.css$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    }
+            // {
+            //     test: /\.css$/,
+            //     use: [{
+            //             loader: MiniCssExtractPlugin.loader
+            //         },
+            //         {
+            //             loader: "css-loader",
+            //             options: {
+            //                 sourceMap: true
+            //             }
+            //         }
 
-                ]
-            }
+            //     ]
+            // }
         ]
     }
 };
