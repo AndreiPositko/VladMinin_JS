@@ -1,52 +1,44 @@
 const path = require('path');
-const HTMLPlugin = require('html-webpack-plugin');
+const HTMLWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/script.js'
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
-    },
-    devServer: {
-        contentBase: __dirname + 'dist'
-    },
-    plugins: [
-        new HTMLPlugin({
-            filename: 'index.html',
-            template: './src/index.html'
-        }),
-        // new MiniCssExtractPlugin({
-        //     filename: "style.css",
-        //     template: './src/style.css'
-        // })
+    entry: [ 
+        './src/script.js',
+        './src/style.css'
     ],
-    resolve: {
-        extensions: ['.js']
+    output: {
+        filename: 'app.js',
+        path: path.resolve(__dirname, './dist')
     },
     module: {
         rules: [{
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-            // {
-            //     test: /\.css$/,
-            //     use: [{
-            //             loader: MiniCssExtractPlugin.loader
-            //         },
-            //         {
-            //             loader: "css-loader",
-            //             options: {
-            //                 sourceMap: true
-            //             }
-            //         }
-
-            //     ]
-            // }
-        ]
-    }
-};
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: '/node_modules/'
+        }, {
+            test: /\.css$/,
+            use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: true,
+                        }
+                },
+                'css-loader'
+            ]
+        }]
+    },
+    devServer: {
+        overlay: true
+    },
+    plugins: [
+        new HTMLWebPackPlugin({
+            filename: 'index.html',
+            template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'style.css'
+        })   
+    ]
+}
